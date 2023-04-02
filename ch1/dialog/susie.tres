@@ -1,0 +1,4 @@
+{
+    "_assume": "!{b:true}!{s:20}!{sfx:common/sfx/susie/speak.wav}",
+    "cutscene_magicdoor2": "Noelle, what are you doing here? Did you get in trouble too?!{n:noelle/}"
+}

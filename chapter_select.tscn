@@ -1,0 +1,14 @@
+[gd_scene format=2]
+
+[node name="ChapterSelect" type="Node"]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="ColorRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )

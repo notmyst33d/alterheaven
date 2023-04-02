@@ -1,0 +1,37 @@
+[gd_resource type="SpriteFrames" load_steps=13 format=2]
+
+[ext_resource path="res://base/sprite/asriel/dark/front2.png" type="Texture" id=1]
+[ext_resource path="res://base/sprite/asriel/dark/right0.png" type="Texture" id=2]
+[ext_resource path="res://base/sprite/asriel/dark/back2.png" type="Texture" id=3]
+[ext_resource path="res://base/sprite/asriel/dark/left0.png" type="Texture" id=4]
+[ext_resource path="res://base/sprite/asriel/dark/back0.png" type="Texture" id=5]
+[ext_resource path="res://base/sprite/asriel/dark/right2.png" type="Texture" id=6]
+[ext_resource path="res://base/sprite/asriel/dark/right1.png" type="Texture" id=7]
+[ext_resource path="res://base/sprite/asriel/dark/front1.png" type="Texture" id=8]
+[ext_resource path="res://base/sprite/asriel/dark/back1.png" type="Texture" id=9]
+[ext_resource path="res://base/sprite/asriel/dark/left1.png" type="Texture" id=10]
+[ext_resource path="res://base/sprite/asriel/dark/front0.png" type="Texture" id=11]
+[ext_resource path="res://base/sprite/asriel/dark/left2.png" type="Texture" id=12]
+
+[resource]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "Back",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "Front",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "Left",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 2 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "Right",
+"speed": 4.0
+} ]

@@ -1,0 +1,4 @@
+{
+    "_assume": "!{b:true}!{s:20}!{sfx:common/sfx/noelle/speak.wav}",
+    "cutscene_magicdoor1": "!{spr:common/sprite/noelle/speak/happy_eyebrowdown.png}There you two are!!{n:susie/cutscene_magicdoor2}"
+}

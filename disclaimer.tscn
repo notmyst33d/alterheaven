@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://base/theme/speak.tres" type="Theme" id=1]
+[ext_resource path="res://disclaimer.gd" type="Script" id=2]
+
+[node name="Disclaimer" type="Node"]
+script = ExtResource( 2 )
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="ColorRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Disclaimer" type="Control" parent="UI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -432.5
+margin_top = -86.5
+margin_right = 432.5
+margin_bottom = 86.5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Disclaimer"]
+margin_right = 863.0
+margin_bottom = 42.0
+theme = ExtResource( 1 )
+text = "This game contains flashing lights and may cause seizures."
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UI/Disclaimer"]
+margin_left = 142.0
+margin_top = 90.0
+margin_right = 679.0
+margin_bottom = 163.0
+theme = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Play in windowed mode for best experience.[/center]"
+text = "Play in windowed mode for best experience."

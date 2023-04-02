@@ -1,0 +1,5 @@
+{
+    "_assume": "{b:true}{s:20}{sfx:base/sfx/asriel/speak.wav}",
+    "_pokrface": "{spr:base/sprite/asriel/speak/pokerface.png}",
+    "bedroom_wakeup": "{i:_pokrface}(Well, here comes another day, I guess...)"
+}
