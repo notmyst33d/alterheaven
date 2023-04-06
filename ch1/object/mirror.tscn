@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://base/object/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ch1/object/mirror.gd" type="Script" id=2]
+
+[node name="Mirror" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="MirrorPlayer" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1, -1 )
+script = null

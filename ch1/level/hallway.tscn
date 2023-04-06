@@ -1,0 +1,94 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://base/script/dialog_object.gd" type="Script" id=1]
+[ext_resource path="res://base/script/level.gd" type="Script" id=2]
+[ext_resource path="res://base/object/player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ch1/sprite/bg_myhallway_0.png" type="Texture" id=5]
+[ext_resource path="res://base/object/level_camera.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ch1/object/mirror.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 44, 24 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 72, 10 )
+
+[node name="Hallway" type="Node2D"]
+script = ExtResource( 2 )
+level_camera = NodePath("LevelCamera")
+level_change_trigger = NodePath("LevelChange")
+player = NodePath("Player")
+next_level = "res://ch1/level/bedroom.tscn"
+
+[node name="LevelCamera" parent="." instance=ExtResource( 6 )]
+limit_right = 2152
+limit_bottom = 960
+player = NodePath("../Player")
+
+[node name="MirrorBackground" type="Sprite" parent="."]
+position = Vector2( 0, 52 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+centered = false
+flip_v = true
+
+[node name="Mirror" parent="." instance=ExtResource( 7 )]
+position = Vector2( 581, 445 )
+player = NodePath("../Player")
+
+[node name="MirrorShade" type="Polygon2D" parent="."]
+modulate = Color( 1, 1, 1, 0.27451 )
+color = Color( 1, 0.980392, 0.901961, 1 )
+polygon = PoolVector2Array( 536, 344, 624, 344, 624, 500, 536, 500 )
+
+[node name="Backgrond" type="Sprite" parent="."]
+scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1196, 478 )
+
+[node name="Bounds" type="StaticBody2D" parent="."]
+
+[node name="1" type="CollisionPolygon2D" parent="Bounds"]
+polygon = PoolVector2Array( 0, 0, 2152, 0, 2152, 960, 1912, 960, 1912, 236, 232, 236, 232, 668, 1912, 668, 1912, 960, 0, 960 )
+
+[node name="2" type="CollisionPolygon2D" parent="Bounds"]
+polygon = PoolVector2Array( 232, 512, 1676, 512, 1676, 236, 232, 236 )
+
+[node name="3" type="CollisionPolygon2D" parent="Bounds"]
+polygon = PoolVector2Array( 1828, 236, 1828, 512, 1912, 512, 1912, 236 )
+
+[node name="PlantDialogObject" type="Area2D" parent="."]
+position = Vector2( 992, 500 )
+script = ExtResource( 1 )
+player = NodePath("../Player")
+level_camera = NodePath("../LevelCamera")
+dialog_file = "res://ch1/dialog/objects.tres"
+dialog_key = "plant"
+should_face = [ 0 ]
+
+[node name="Shape" type="CollisionShape2D" parent="PlantDialogObject"]
+position = Vector2( 0, 12 )
+shape = SubResource( 2 )
+
+[node name="MirrorDialogObject" type="Area2D" parent="."]
+position = Vector2( 578, 500 )
+script = ExtResource( 1 )
+player = NodePath("../Player")
+level_camera = NodePath("../LevelCamera")
+dialog_file = "res://ch1/dialog/objects.tres"
+dialog_key = "mirror%02d"
+dialog_counter = true
+should_face = [ 0 ]
+
+[node name="Shape" type="CollisionShape2D" parent="MirrorDialogObject"]
+position = Vector2( 2, 12 )
+shape = SubResource( 2 )
+
+[node name="LevelChange" type="Area2D" parent="."]
+position = Vector2( 1751, 381 )
+
+[node name="Shape" type="CollisionShape2D" parent="LevelChange"]
+shape = SubResource( 1 )

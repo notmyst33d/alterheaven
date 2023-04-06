@@ -1,6 +1,10 @@
 extends Control
 
-var DDF = load("base/lib/ddf.gd")
+signal dialog_finished
+signal control_changed
+signal counter_changed
+
+const DDF = preload("res://base/lib/ddf.gd")
 
 var strings = null
 
@@ -14,7 +18,11 @@ var text_cps = null
 var wait = null
 var wait_time = null
 var skip = false
-var just_pressed_z = false
+var pressed_primary_previously = false
+var pressed_primary_previously_different = false
+var pressed_primary_previously_different_triggered = false
+var touch_primary = false
+var waste_frame = false
 
 onready var face_node = $BoxControl/Container/Contents/FaceControl/Face
 onready var text_node = $BoxControl/Container/Contents/FaceControl/TypeControl/Container/StarControl/TextControl/Text
@@ -25,14 +33,16 @@ func load_ddf(file):
 func _type_char():
 	text_node.text += text[text_index]
 	text_index += 1
-	#$SFX.play()
+	$SFX.play()
 
 func _reset():
 	current_index = 0
-	Log.debug("Test", text_node)
+	#Log.debug("Test", text_node)
 	text_node.text = ""
 	face_node.texture = null
 	skip = false
+	pressed_primary_previously_different = false
+	pressed_primary_previously_different_triggered = false
 	_reset_text()
 	_reset_text_cps()
 	_reset_wait()
@@ -55,7 +65,9 @@ func _reset_wait():
 	wait_time = null
 
 func _finish():
+	current = null
 	visible = false
+	emit_signal("dialog_finished")
 
 func initiate(dialog):
 	_reset()
@@ -64,10 +76,16 @@ func initiate(dialog):
 	visible = true
 
 func _process(delta):
-	if Input.is_action_just_pressed("primary") and not just_pressed_z:
-		skip = true
+	if not current:
+		return
+
+	if primary_pressed() and not pressed_primary_previously:
+		#skip = true
+		if not pressed_primary_previously_different_triggered:
+			pressed_primary_previously_different = true
+			pressed_primary_previously_different_triggered = true
 	else:
-		just_pressed_z = false
+		pressed_primary_previously = false
 
 	if skip:
 		if text and text_cps:
@@ -95,7 +113,10 @@ func _process(delta):
 		if current and current_index < len(current):
 			var one_frame = true
 			while current_index < len(current) and one_frame:
+				print(current[current_index]["type"])
 				match current[current_index]["type"]:
+					DDF.Command.Block:
+						emit_signal("control_changed", current[current_index]["data"])
 					DDF.Command.Next:
 						next = strings[current[current_index]["data"].get_slice("/", 1)]
 					DDF.Command.Text:
@@ -117,16 +138,32 @@ func _process(delta):
 							wait_time = 0
 							one_frame = false
 					DDF.Command.SFX:
-						pass
-						#$SFX.stream = load(current[current_index]["data"])
+						$SFX.stream = load(current[current_index]["data"])
+					DDF.Command.CounterIncrement:
+						emit_signal("counter_changed", 1)
+					DDF.Command.CounterDecrement:
+						emit_signal("counter_changed", -1)
 				current_index += 1
 		else:
-			if Input.is_action_just_pressed("primary"):
-				just_pressed_z = true
+			if primary_pressed():
 				if next:
+					pressed_primary_previously = true
 					current = next
 					next = null
 					_reset()
 					_process(0)
-				else:
+				elif not pressed_primary_previously_different:
 					_finish()
+				else:
+					pressed_primary_previously_different = false
+
+	touch_primary = false
+
+func primary_pressed():
+	if touch_primary:
+		return true
+
+	return Input.is_action_just_pressed("primary")
+
+func _on_PrimaryButton_pressed():
+	touch_primary = true

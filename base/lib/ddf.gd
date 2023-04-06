@@ -13,6 +13,8 @@ extends Node
 # {int} - Interrupt dialog
 # {i:key} - Insert data from key
 # {e:event} - Send an event
+# {+} - Increment dialog counter
+# {-} - Decrement dialog counter
 #
 # JSON syntax:
 # "_assume" - Assume commands at the start of each dialog key in DDF file
@@ -28,20 +30,22 @@ enum Command {
 	Sprite,
 	SFX,
 	Interrupt,
-	Text
+	Text,
+	CounterIncrement,
+	CounterDecrement
 }
 
 static func parse(filepath):
-	Log.debug(tag, "Parsing %s" % filepath)
+	Debug.log_debug_once(tag, "Parsing %s" % filepath)
 
 	var fd = File.new()
 	var err = fd.open(filepath, File.READ)
-	Log.debug(tag, err)
+	Debug.log_debug_once(tag, err)
 	var data = JSON.parse(fd.get_as_text())
 	fd.close()
 
 	if data.error:
-		Log.error(tag, "JSON.parse failed")
+		Debug.log_error_once(tag, "JSON.parse failed")
 		return null
 
 	var compiled = {}
@@ -53,7 +57,7 @@ static func parse(filepath):
 			assume = data.result[key]
 			first = false
 		elif first and key != "_assume":
-			Log.error(tag, "First key is not _assume")
+			Debug.log_error_once(tag, "First key is not _assume")
 			return null
 		else:
 			compiled[key] = compile(assume + data.result[key], key, compiled)
@@ -96,8 +100,12 @@ static func compile(ddfcode, key, complete):
 						if value:
 							compiled.append_array(value)
 						else:
-							Log.error(tag, "Compile failed at %s: %s isnt defined (caused by Command.Insert)" % [key, inner[1]])
+							Debug.log_error_once(tag, "Compile failed at %s: %s isnt defined (caused by Command.Insert)" % [key, inner[1]])
 							return null
+					"+":
+						compiled.append({"type": Command.CounterIncrement})
+					"-":
+						compiled.append({"type": Command.CounterDecrement})
 
 			i = end + 1
 		else:

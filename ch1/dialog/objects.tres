@@ -1,0 +1,9 @@
+{
+    "_assume": "{b:true}{s:20}{sfx:base/sfx/asriel/speak.wav}",
+    "_default": "{spr:base/sprite/asriel/speak/default.png}",
+    "_concern": "{spr:base/sprite/asriel/speak/concerned.png}",
+    "plant": "{i:_default}(It's just a plant...)",
+    "mirror00": "{i:_concern}(It's just me...){+}",
+    "mirror01": "{i:_concern}(There is no one besides me...){+}",
+    "mirror02": "{i:_concern}(...)",
+}
