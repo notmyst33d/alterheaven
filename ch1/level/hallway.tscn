@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://base/script/dialog_object.gd" type="Script" id=1]
 [ext_resource path="res://base/script/level.gd" type="Script" id=2]
 [ext_resource path="res://base/object/player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ch1/sprite/spr_torhouse_mirror_0.png" type="Texture" id=4]
 [ext_resource path="res://ch1/sprite/bg_myhallway_0.png" type="Texture" id=5]
 [ext_resource path="res://base/object/level_camera.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ch1/object/mirror.tscn" type="PackedScene" id=7]
@@ -26,14 +27,13 @@ limit_bottom = 960
 player = NodePath("../Player")
 
 [node name="MirrorBackground" type="Sprite" parent="."]
-position = Vector2( 0, 52 )
+position = Vector2( 524, 328 )
 scale = Vector2( 4, 4 )
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 centered = false
-flip_v = true
 
 [node name="Mirror" parent="." instance=ExtResource( 7 )]
-position = Vector2( 581, 445 )
+position = Vector2( 581, 453 )
 player = NodePath("../Player")
 
 [node name="MirrorShade" type="Polygon2D" parent="."]
