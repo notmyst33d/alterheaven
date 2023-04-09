@@ -109,27 +109,28 @@ func check_inputs():
 	if check:
 		return true
 
-	if touch_pressed and touch_position:
+	if false:
 		var level_camera = get_node("../LevelCamera")
-		velocity = global_position.direction_to(level_camera.position + touch_position)
+		if global_position.distance_to(level_camera.position + touch_position) >= 16:
+			velocity = global_position.direction_to(level_camera.position + touch_position)
 
-		override = false
-		if velocity.y > 0.5:
-			if sprite.animation != "Front" or not sprite.playing:
-				sprite.play("Front")
-			override = true
-		elif velocity.y < -0.5:
-			if sprite.animation != "Back" or not sprite.playing:
-				sprite.play("Back")
-			override = true
+			override = false
+			if velocity.y > 0.5:
+				if sprite.animation != "Front" or not sprite.playing:
+					sprite.play("Front")
+				override = true
+			elif velocity.y < -0.5:
+				if sprite.animation != "Back" or not sprite.playing:
+					sprite.play("Back")
+				override = true
 
-		if not override:
-			if velocity.x > 0 and sprite.animation != "Right" or not sprite.playing:
-				sprite.play("Right")
-			elif velocity.x < 0 and sprite.animation != "Left" or not sprite.playing:
-				sprite.play("Left")
+			if not override:
+				if velocity.x > 0 and sprite.animation != "Right" or not sprite.playing:
+					sprite.play("Right")
+				elif velocity.x < 0 and sprite.animation != "Left" or not sprite.playing:
+					sprite.play("Left")
 
-		return true
+			return true
 
 	if sprite.playing:
 		sprite.frame = 0
