@@ -6,6 +6,8 @@ var size = null
 
 var level = null
 
+var variables = {}
+
 func _ready():
 	if ProjectSettings.get("display/window/stretch/mode") == "2d":
 		size = Vector2(ProjectSettings.get("display/window/size/width"), ProjectSettings.get("display/window/size/height"))
