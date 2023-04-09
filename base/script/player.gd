@@ -72,8 +72,8 @@ func enable_movement():
 
 func check_inputs():
 	if not can_move:
-		$Sprite.frame = 0
-		$Sprite.stop()
+		sprite.frame = 0
+		sprite.stop()
 		return false
 
 	var override = false
