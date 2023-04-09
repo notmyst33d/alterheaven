@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://base/script/dialog_object.gd" type="Script" id=1]
 [ext_resource path="res://base/script/level.gd" type="Script" id=2]
@@ -7,19 +7,22 @@
 [ext_resource path="res://ch1/sprite/bg_myhallway_0.png" type="Texture" id=5]
 [ext_resource path="res://base/object/level_camera.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ch1/object/mirror.tscn" type="PackedScene" id=7]
+[ext_resource path="res://base/script/marker.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 44, 24 )
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 72, 10 )
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 62, 10 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 76, 10 )
 
 [node name="Hallway" type="Node2D"]
 script = ExtResource( 2 )
 level_camera = NodePath("LevelCamera")
-level_change_trigger = NodePath("LevelChange")
+markers = [ NodePath("MarkerDefault"), NodePath("MarkerLivingRoom") ]
 player = NodePath("Player")
-next_level = "res://ch1/level/living_room.tscn"
 
 [node name="LevelCamera" parent="." instance=ExtResource( 6 )]
 limit_right = 2152
@@ -47,7 +50,6 @@ texture = ExtResource( 5 )
 centered = false
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1196, 478 )
 
 [node name="Bounds" type="StaticBody2D" parent="."]
 
@@ -55,7 +57,7 @@ position = Vector2( 1196, 478 )
 polygon = PoolVector2Array( 0, 0, 2152, 0, 2152, 960, 1912, 960, 1912, 236, 232, 236, 232, 668, 1912, 668, 1912, 960, 0, 960 )
 
 [node name="2" type="CollisionPolygon2D" parent="Bounds"]
-polygon = PoolVector2Array( 232, 512, 1676, 512, 1676, 236, 232, 236 )
+polygon = PoolVector2Array( 232, 512, 1132, 512, 1132, 477, 1256, 477, 1256, 512, 1676, 512, 1676, 236, 232, 236 )
 
 [node name="3" type="CollisionPolygon2D" parent="Bounds"]
 polygon = PoolVector2Array( 1828, 236, 1828, 512, 1912, 512, 1912, 236 )
@@ -87,8 +89,33 @@ should_face = [ 0 ]
 position = Vector2( 2, 12 )
 shape = SubResource( 2 )
 
-[node name="LevelChange" type="Area2D" parent="."]
-position = Vector2( 1751, 381 )
+[node name="MarkerDefault" type="Area2D" parent="."]
+position = Vector2( 1193, 487 )
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 8 )
+next_level = "res://ch1/level/bedroom.tscn"
+next_level_marker_name = "hallway"
+player_spawn = NodePath("Spawn")
 
-[node name="Shape" type="CollisionShape2D" parent="LevelChange"]
-shape = SubResource( 1 )
+[node name="Shape" type="CollisionShape2D" parent="MarkerDefault"]
+position = Vector2( 1, 0 )
+shape = SubResource( 4 )
+
+[node name="Spawn" type="Node2D" parent="MarkerDefault"]
+
+[node name="MarkerLivingRoom" type="Area2D" parent="."]
+position = Vector2( 1746, 488 )
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 8 )
+marker_name = "living_room"
+next_level = "res://ch1/level/living_room.tscn"
+player_spawn = NodePath("Spawn")
+
+[node name="Shape" type="CollisionShape2D" parent="MarkerLivingRoom"]
+position = Vector2( 6, -82 )
+shape = SubResource( 3 )
+
+[node name="Spawn" type="Node2D" parent="MarkerLivingRoom"]
+position = Vector2( 6, 0 )

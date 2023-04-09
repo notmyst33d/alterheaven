@@ -1,17 +1,25 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://base/script/level.gd" type="Script" id=1]
 [ext_resource path="res://base/object/level_camera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ch1/sprite/bg_mybathroom_0.png" type="Texture" id=3]
 [ext_resource path="res://base/object/player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://base/script/marker.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 39.2695 )
 
 [node name="Bathroom" type="Node2D"]
 script = ExtResource( 1 )
 level_camera = NodePath("LevelCamera")
+markers = [ NodePath("MarkerLivingRoom") ]
 player = NodePath("Player")
 
 [node name="LevelCamera" parent="." instance=ExtResource( 2 )]
 current = false
+limit_right = 1280
+limit_bottom = 960
+player = NodePath("../Player")
 
 [node name="Background" type="Sprite" parent="."]
 scale = Vector2( 4, 4 )
@@ -19,5 +27,19 @@ texture = ExtResource( 3 )
 centered = false
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 935, 545 )
-facing = 2
+
+[node name="MarkerLivingRoom" type="Area2D" parent="."]
+position = Vector2( 933, 550 )
+script = ExtResource( 5 )
+next_level = "res://ch1/level/living_room.tscn"
+next_level_marker_name = "bathroom"
+player_spawn = NodePath("Spawn")
+player_facing = 2
+
+[node name="Shape" type="CollisionShape2D" parent="MarkerLivingRoom"]
+position = Vector2( 66.2322, 19.2322 )
+rotation = -0.785398
+shape = SubResource( 1 )
+
+[node name="Spawn" type="Node2D" parent="MarkerLivingRoom"]
+position = Vector2( -5, 0 )

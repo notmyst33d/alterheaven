@@ -1,20 +1,20 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://misc/test.png" type="Texture" id=1]
 [ext_resource path="res://misc/test2.png" type="Texture" id=2]
 [ext_resource path="res://base/object/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://base/object/level_camera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ch1/level/bedroom.gd" type="Script" id=5]
+[ext_resource path="res://base/script/marker.gd" type="Script" id=6]
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 80, 10 )
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 80, 6 )
 
 [node name="Bedroom" type="Node2D"]
 script = ExtResource( 5 )
 level_camera = NodePath("LevelCamera")
-level_change_trigger = NodePath("LevelChange")
+markers = [ NodePath("MarkerDefault"), NodePath("MarkerHallway") ]
 player = NodePath("Player")
-next_level = "res://ch1/level/hallway.tscn"
 
 [node name="LevelCamera" parent="." instance=ExtResource( 4 )]
 limit_right = 1280
@@ -32,20 +32,35 @@ scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 876, 486 )
 
 [node name="Bounds" type="StaticBody2D" parent="."]
-scale = Vector2( 0.998239, 1 )
 
 [node name="Shape" type="CollisionPolygon2D" parent="Bounds"]
 position = Vector2( 7, 4 )
 polygon = PoolVector2Array( 553, 956, 553, 796, 153, 796, 153, 156, 1113, 156, 1113, 796, 713, 796, 713, 956, 1273, 956, 1273, -4, -7, -4, -7, 956 )
 
-[node name="LevelChange" type="Area2D" parent="."]
-position = Vector2( 640, 918 )
+[node name="MarkerDefault" type="Area2D" parent="."]
+position = Vector2( 878, 485 )
 collision_layer = 2
 collision_mask = 2
+script = ExtResource( 6 )
+player_spawn = NodePath("Spawn")
 
-[node name="Shape" type="CollisionShape2D" parent="LevelChange"]
-position = Vector2( 0, 32 )
-shape = SubResource( 3 )
+[node name="Spawn" type="Node2D" parent="MarkerDefault"]
+
+[node name="MarkerHallway" type="Area2D" parent="."]
+position = Vector2( 638, 862 )
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 6 )
+marker_name = "hallway"
+next_level = "res://ch1/level/hallway.tscn"
+next_level_marker_name = "bedroom"
+player_spawn = NodePath("Spawn")
+player_facing = 0
+
+[node name="Shape" type="CollisionShape2D" parent="MarkerHallway"]
+position = Vector2( 2, 92 )
+shape = SubResource( 1 )
+
+[node name="Spawn" type="Node2D" parent="MarkerHallway"]
