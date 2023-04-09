@@ -6,12 +6,12 @@ If something is not on this list, that means its either extremely broken or not 
 
 | Status | Feature | Notes |
 | ------ | ------- | ----- |
-| ✅ | Player movement | Should work and feel (mostly) like in Deltarune |
-| ⚠️ | Touch support   | Very basic, needs more refining(like, come on, i can do better than these pesky PS4 buttons and a D-Pad!) |
-| ⚠️ | Dialog system   | Mostly done, but currently its a bit broken(skip doesnt work for example) |
-| ⚠️ | Level change    | Only works when used linearly, if a level has several level changes(`ch1/level/living_room.tscn`), the player will spawn at the default location |
-| ❌ | Battles         | `base/object/battle.tscn`(i wanna die) |
-| ❌ | Chapter 1       | No |
+| ✅ | Player movement        | Should work and feel (mostly) like in Deltarune |
+| ⚠️ | Touch support          | Very basic, needs more refining(like, come on, i can do better than these pesky PS4 buttons and a D-Pad!) |
+| ⚠️ | Dialog system          | Mostly done, but currently its a bit broken(skip doesnt work for example) |
+| ⚠️ | Level change (markers) | ~Only works when used linearly, if a level has several level changes(`ch1/level/living_room.tscn`), the player will spawn at the default location~ Fixed, but needs more work(unintuitive variable names) |
+| ❌ | Battles                | `base/object/battle.tscn`(i wanna die) |
+| ❌ | Chapter 1              | Maybe |
 
 # Minimum hardware requirements
 * Athlon II X2 215, or any other CPU released after 2007
