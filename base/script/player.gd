@@ -67,11 +67,9 @@ func _physics_process(delta):
 		velocity = Vector2.ZERO
 
 func disable_movement():
-	print("Disabled")
 	can_move = false
 
 func enable_movement():
-	print("Enabled")
 	can_move = true
 
 func check_inputs():
