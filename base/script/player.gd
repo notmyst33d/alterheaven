@@ -16,12 +16,20 @@ var velocity = Vector2.ZERO
 var speed = 60
 var speed_multiplier = 1
 var can_move = true
-var facing = Facing.Down
+export(Facing) var facing = Facing.Down
 
 var touch_position = null
 var touch_pressed = false
 
 func _ready():
+	if facing == Facing.Up:
+		sprite.animation = "Back"
+	elif facing == Facing.Down:
+		sprite.animation = "Front"
+	elif facing == Facing.Left:
+		sprite.animation = "Left"
+	elif facing == Facing.Right:
+		sprite.animation = "Right"
 	connect("level_changed", self, "disable_movement")
 
 func _input(event):
