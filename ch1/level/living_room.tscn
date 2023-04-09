@@ -7,13 +7,14 @@
 [ext_resource path="res://base/object/level_camera.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
+extents = Vector2( 66, 16 )
 
 [node name="LivingRoom" type="Node2D"]
 script = ExtResource( 1 )
 level_camera = NodePath("LevelCamera")
 level_change_trigger = NodePath("LevelChange")
 player = NodePath("Player")
+next_level = "res://ch1/level/hallway.tscn"
 
 [node name="LevelCamera" parent="." instance=ExtResource( 5 )]
 limit_right = 2828
@@ -35,7 +36,7 @@ texture = ExtResource( 3 )
 centered = false
 
 [node name="LevelChange" type="Area2D" parent="."]
-position = Vector2( 2432, 656 )
+position = Vector2( 618, 496 )
 
 [node name="Shape" type="CollisionShape2D" parent="LevelChange"]
 shape = SubResource( 1 )

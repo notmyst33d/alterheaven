@@ -11,6 +11,7 @@ level_camera = NodePath("LevelCamera")
 player = NodePath("Player")
 
 [node name="LevelCamera" parent="." instance=ExtResource( 2 )]
+current = false
 
 [node name="Background" type="Sprite" parent="."]
 scale = Vector2( 4, 4 )

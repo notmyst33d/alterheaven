@@ -19,7 +19,7 @@ script = ExtResource( 2 )
 level_camera = NodePath("LevelCamera")
 level_change_trigger = NodePath("LevelChange")
 player = NodePath("Player")
-next_level = "res://ch1/level/bedroom.tscn"
+next_level = "res://ch1/level/living_room.tscn"
 
 [node name="LevelCamera" parent="." instance=ExtResource( 6 )]
 limit_right = 2152
