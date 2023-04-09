@@ -57,7 +57,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("primary"):
 		emit_signal("interacted")
 
-	if Input.is_action_pressed("sprint"):
+	if Input.is_action_pressed("quadiary"):
 		speed_multiplier = 2
 	else:
 		speed_multiplier = 1
