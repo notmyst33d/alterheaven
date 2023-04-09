@@ -13,6 +13,14 @@ If something is not on this list, that means its either extremely broken or not 
 | ❌ | Battles         | `base/object/battle.tscn`(i wanna die) |
 | ❌ | Chapter 1       | No |
 
+# Minimum hardware requirements
+* Athlon II X2 215, or any other CPU released after 2007
+* GeForce 7025, or any other GPU with OpenGL 2.1/OpenGL ES 2.0 or later
+* 2 GB of RAM (but possible on 1 GB of RAM with a swap file)
+* 200 MB of disk space
+
+Yes, i actually was able to run early builds of the game on this hardware, however, this might change in the future as the game gets more and more complex(but i'll try to keep it light on resources)
+
 # Screenshots
 ## Android
 <img src="repo/android.jpg">
