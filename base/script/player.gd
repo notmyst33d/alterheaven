@@ -1,3 +1,4 @@
+tool
 extends KinematicBody2D
 
 signal interacted
@@ -50,6 +51,9 @@ func _input(event):
 			touch_position = event.position
 
 func _physics_process(delta):
+	if Engine.editor_hint:
+		return
+
 	if Input.is_action_just_pressed("primary"):
 		emit_signal("interacted")
 
