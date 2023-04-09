@@ -4,6 +4,7 @@ var messages = []
 var messages_once = []
 
 func _process(_delta):
+	return
 	if not Global.level:
 		return
 
