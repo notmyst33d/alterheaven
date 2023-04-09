@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://base/script/level.gd"
 }, {
+"base": "Camera2D",
+"class": "LevelCamera",
+"language": "GDScript",
+"path": "res://base/script/level_camera.gd"
+}, {
 "base": "Node2D",
 "class": "Node2DRow",
 "language": "GDScript",
@@ -27,6 +32,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "CancellableTween": "",
 "Level": "",
+"LevelCamera": "",
 "Node2DRow": ""
 }
 

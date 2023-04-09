@@ -1,12 +1,25 @@
 extends Camera2D
 
-export(NodePath) var player = null
+class_name LevelCamera
 
-func _process(delta):
+export(NodePath) var player = null
+var player_node = null
+
+func _ready():
 	if not player:
+		print("[LevelCamera] Player not set")
 		return
 
-	var player_position = get_node(player).position
+	player_node = get_node(player)
+
+	if OS.has_feature("mobile"):
+		add_child(load("res://base/object/touch_buttons.tscn").instance())
+
+func _process(delta):
+	if not player_node:
+		return
+
+	var player_position = player_node.position
 	var center = Global.size / 2
 
 	position = Vector2(
