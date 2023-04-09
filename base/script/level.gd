@@ -10,14 +10,24 @@ export(String, FILE) var next_level = null
 func _ready():
 	Global.level = self
 
-	get_node(level_change_trigger).connect("body_entered", self, "_level_changed")
+	if level_change_trigger:
+		get_node(level_change_trigger).connect("body_entered", self, "_level_changed")
+	else:
+		print("[Level] Level change trigger is not set")
 
-	var fade = get_node(level_camera).get_node("Fade")
-	var tween = get_tree().create_tween()
-	fade.modulate = Color("ffffffff")
-	tween.tween_property(fade, "modulate", Color("00ffffff"), 0.5)
+	if level_camera:
+		var fade = get_node(level_camera).get_node("Fade")
+		var tween = get_tree().create_tween()
+		fade.modulate = Color("ffffffff")
+		tween.tween_property(fade, "modulate", Color("00ffffff"), 0.5)
+	else:
+		print("[Level] Level camera is not set")
 
 func _level_changed(body):
+	if not next_level:
+		print("[Level] Cannot change level because there is no next level")
+		return
+
 	get_node(player).emit_signal("level_changed")
 
 	var fade = get_node(level_camera).get_node("Fade")
