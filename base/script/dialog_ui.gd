@@ -113,7 +113,7 @@ func _process(delta):
 		if current and current_index < len(current):
 			var one_frame = true
 			while current_index < len(current) and one_frame:
-				print(current[current_index]["type"])
+				#print(current[current_index]["type"])
 				match current[current_index]["type"]:
 					DDF.Command.Block:
 						emit_signal("control_changed", current[current_index]["data"])
