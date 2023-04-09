@@ -1,0 +1,105 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://base/sprite/touch/cross.png" type="Texture" id=1]
+[ext_resource path="res://base/sprite/touch/up_pressed.png" type="Texture" id=2]
+[ext_resource path="res://base/sprite/touch/left.png" type="Texture" id=3]
+[ext_resource path="res://base/sprite/touch/circle.png" type="Texture" id=4]
+[ext_resource path="res://base/sprite/touch/triangle_pressed.png" type="Texture" id=5]
+[ext_resource path="res://base/sprite/touch/cross_pressed.png" type="Texture" id=6]
+[ext_resource path="res://base/sprite/touch/triangle.png" type="Texture" id=7]
+[ext_resource path="res://base/sprite/touch/right_pressed.png" type="Texture" id=8]
+[ext_resource path="res://base/sprite/touch/up.png" type="Texture" id=9]
+[ext_resource path="res://base/sprite/touch/left_pressed.png" type="Texture" id=10]
+[ext_resource path="res://base/sprite/touch/down_pressed.png" type="Texture" id=11]
+[ext_resource path="res://base/sprite/touch/square_pressed.png" type="Texture" id=12]
+[ext_resource path="res://base/sprite/touch/right.png" type="Texture" id=13]
+[ext_resource path="res://base/sprite/touch/circle_pressed.png" type="Texture" id=14]
+[ext_resource path="res://base/sprite/touch/square.png" type="Texture" id=15]
+[ext_resource path="res://base/sprite/touch/down.png" type="Texture" id=16]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6, 6 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 7, 2.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 7, 2.5 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 2.5, 7 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 2.5, 7 )
+
+[node name="TouchButtons" type="Node2D"]
+modulate = Color( 1, 1, 1, 0.498039 )
+z_index = 1
+
+[node name="Buttons" type="Node2D" parent="."]
+position = Vector2( 784, 464 )
+scale = Vector2( 12, 12 )
+
+[node name="Primary" type="TouchScreenButton" parent="Buttons"]
+position = Vector2( 24, 12 )
+normal = ExtResource( 4 )
+pressed = ExtResource( 14 )
+shape = SubResource( 1 )
+action = "primary"
+
+[node name="Secondary" type="TouchScreenButton" parent="Buttons"]
+position = Vector2( 12, 24 )
+normal = ExtResource( 1 )
+pressed = ExtResource( 6 )
+shape = SubResource( 1 )
+action = "secondary"
+
+[node name="Tertiary" type="TouchScreenButton" parent="Buttons"]
+position = Vector2( 12, 0 )
+normal = ExtResource( 7 )
+pressed = ExtResource( 5 )
+shape = SubResource( 1 )
+action = "tertiary"
+
+[node name="Quadiary" type="TouchScreenButton" parent="Buttons"]
+position = Vector2( 0, 12 )
+normal = ExtResource( 15 )
+pressed = ExtResource( 12 )
+shape = SubResource( 1 )
+action = "quadiary"
+
+[node name="DPad" type="Node2D" parent="."]
+position = Vector2( 64, 560 )
+scale = Vector2( 24, 24 )
+
+[node name="DPadUp" type="TouchScreenButton" parent="DPad"]
+position = Vector2( 5, 0 )
+normal = ExtResource( 9 )
+pressed = ExtResource( 2 )
+shape = SubResource( 2 )
+passby_press = true
+action = "up"
+
+[node name="DPadDown" type="TouchScreenButton" parent="DPad"]
+position = Vector2( 5, 9 )
+normal = ExtResource( 16 )
+pressed = ExtResource( 11 )
+shape = SubResource( 3 )
+passby_press = true
+action = "down"
+
+[node name="DPadLeft" type="TouchScreenButton" parent="DPad"]
+position = Vector2( 0, 5 )
+normal = ExtResource( 3 )
+pressed = ExtResource( 10 )
+shape = SubResource( 4 )
+passby_press = true
+action = "left"
+
+[node name="DPadRight" type="TouchScreenButton" parent="DPad"]
+position = Vector2( 9, 5 )
+normal = ExtResource( 13 )
+pressed = ExtResource( 8 )
+shape = SubResource( 5 )
+passby_press = true
+action = "right"
