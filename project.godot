@@ -55,7 +55,7 @@ config/windows_native_icon="res://icon.ico"
 
 Global="*res://base/script/global.gd"
 Debug="*res://base/script/debug.gd"
-FullscreenManager="*res://base/script/manager/fullscreen.gd"
+Fullscreen="*res://base/script/fullscreen.gd"
 
 [display]
 
