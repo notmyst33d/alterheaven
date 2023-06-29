@@ -2,4 +2,3 @@
 .mono
 *.translation
 export_presets.cfg
-repo/*.import
