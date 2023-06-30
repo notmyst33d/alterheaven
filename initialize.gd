@@ -1,7 +1,7 @@
 extends Node
 
 var tvres = Vector2(1280, 960)
-var wideres = Vector2(1696, 954)
+var wideres = Vector2(1536, 960)
 
 func _ready():
     #OS.window_size = wideres
