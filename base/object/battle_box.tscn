@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://misc/bicon.png" type="Texture" id=1]
-[ext_resource path="res://Popdown.tres" type="Animation" id=2]
-[ext_resource path="res://Popup.tres" type="Animation" id=3]
+[ext_resource path="res://misc/Popdown.tres" type="Animation" id=2]
+[ext_resource path="res://misc/Popup.tres" type="Animation" id=3]
 
 [node name="BattleBox" type="Node2D"]
 position = Vector2( 0, -28 )
